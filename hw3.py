@@ -53,7 +53,14 @@ Example 2:
 		False
 """
 def subset_sum(arr, target):
-	pass
+	return subset_sum_rec(arr, target, 0)
+
+def subset_sum_rec(arr, target, start_ind):
+	if (sum(arr) == target):
+		return True
+	for i in range(start_ind, len(arr)):
+		return subset_sum_rec(arr[:i] + arr[i+1:], target, i)
+	return False
 
 """
 spiral_matrix

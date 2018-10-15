@@ -13,9 +13,16 @@ most_common_char
 Given an input string s, return the most common character in s.
 """
 def most_common_char(s):
+	if len(s) == 1:
+		return s[0]
+	common_char = ''
+	local_max = 0
+	for index in s:
+		if s.count(index) > local_max:
+			local_max = s.count(index)
+			common_char = index
+	return common_char
 	pass
-
-
 """
 alphabet_finder
 
@@ -37,6 +44,17 @@ Example 2:
 		None
 """
 def alphabet_finder(s):
+	alphabet_arr = []
+	for index in range(97, 123):
+		alphabet_arr[index] = str((alphabet_arr[index]))
+	index = 0
+	for i in range(0, len(s)):
+		if len(alphabet_arr) > 0:
+			if alphabet_arr.contains(s[index]):
+				alphabet_arr.remove(s[index])
+		else:
+			
+	return s[:index]
 	pass
 
 
@@ -56,6 +74,35 @@ Example:
 		[1, 6]
 """
 def longest_unique_subarray(arr):
+	answer = long_array(arr, 0 , 0)
+	return answer
+	pass
+def long_array(arr, startInd, endInd):
+	if len(arr) == 0:
+		return arr
+	startInd = 0
+	endInd = len(arr)
+	for i in arr:
+		if startInd == len(arr):
+			startInd = 0
+			endInd -= 1
+			print(endInd)
+		if check_unique(arr[startInd:endInd]):
+			print("startInd = ", startInd, "endInd = ", endInd)	
+			#print("answer = ", answer)
+			break;
+		else:
+			startInd += 1
+			return long_array(arr[startInd:endInd], startInd, endInd)
+	answer = [startInd, endInd]
+	return answer
+	pass
+def check_unique(sub_arr):
+	for i in sub_arr:
+		x = sub_arr.count(i)
+		if x != 1:
+			return False
+	return True
 	pass
 
 
@@ -99,6 +146,16 @@ Example 3:
 		False
 """
 def string_my_one_true_love(s):
+	if len(s) == 0:
+		return False
+	arr_counts = []
+	checker = s.count(s[0])
+	for i in range(0, len(s)):
+		arr_counts.append(s.count(s[i]) - checker)
+	max_count = max(arr_counts)
+	if max_count > 1:
+		return False
+	return True
 	pass
 
 
@@ -117,6 +174,22 @@ Example:
 		1961
 """
 def alive_people(data):
+	data = sorted(data)
+	print(data)
+	range1 = data[0][0]
+	range2 = data[len(data)-1][0]
+	yearlist = list(range(range1, range2+1))
+	alivelist = [0]*(len(yearlist) + 1)
+	for j in range(0, len(yearlist)+1):
+		x = j + range1
+		for i in range(0, len(data)):
+			if x >= data[i][0]:
+				if x <=data[i][0]+data[i][1]:
+					alivelist[j] += 1
+	max_alive = max(alivelist)
+	index_year = alivelist.index(max_alive)
+	year = yearlist[index_year]
+	return (year)
 	pass
 
 
@@ -140,6 +213,19 @@ Example:
 		]
 """
 def three_sum(arr, t):
+	ar1 = 0
+	ar2 = 0
+	ar3 = 0
+	triple = []
+	for i in range(0, len(arr)):
+		ar1 = arr[i]
+		for j in range(i, len(arr)):
+			ar2 = arr[j]
+			for k in range(j, len(arr)):
+				ar3 = arr[k]
+				if ar1 + ar2 + ar3 == t:
+					triple.append([ar1, ar2, ar3])
+	return triple
 	pass
 
 
@@ -162,6 +248,7 @@ Example 2:
 		4294967296 ** (1 / 16) (i.e., 4)
 """
 def happy_numbers(n):
+
 	pass
 
 
